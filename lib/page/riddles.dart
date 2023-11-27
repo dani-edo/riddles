@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:riddles/page/question.dart';
 import 'package:riddles/page/start_screen.dart';
 
 class Riddles extends StatefulWidget {
@@ -9,6 +10,24 @@ class Riddles extends StatefulWidget {
 }
 
 class _QuizState extends State<Riddles> {
+  Widget? activeScreen;
+
+  @override
+  void initState() {
+    activeScreen = StartScreen(
+      startQuiz: switchScreen,
+      title: 'Riddle',
+      subTitle: 'Enjoy playing riddle',
+    );
+    super.initState();
+  }
+
+  void switchScreen() {
+    setState(() {
+      activeScreen = const Question();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -26,10 +45,7 @@ class _QuizState extends State<Riddles> {
                     Color.fromARGB(255, 135, 17, 186)
                   ]),
             ),
-            child: const StartScreen(
-              title: 'Riddle',
-              subTitle: 'Enjoy playing riddle',
-            ),
+            child: activeScreen,
           ),
         ));
   }

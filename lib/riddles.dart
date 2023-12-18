@@ -20,13 +20,14 @@ class _QuizState extends State<Riddles> {
 
   @override
   Widget build(BuildContext context) {
-    final screenAWidget = activeScreen == 'start-screen'
-        ? StartScreen(
-            startQuiz: switchScreen,
-            title: 'Riddle',
-            subTitle: 'Enjoy playing riddle',
-          )
-        : const Question();
+    Widget screenAWidget = StartScreen(
+      startQuiz: switchScreen,
+      title: 'Riddle',
+      subTitle: 'Enjoy playing riddle',
+    );
+    if (activeScreen == 'question-string') {
+      screenAWidget = const Question();
+    }
     return MaterialApp(
         title: 'Riddle',
         home: Scaffold(

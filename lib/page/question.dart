@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:riddles/components/answer_button.dart';
 
 class Question extends StatefulWidget {
   const Question({Key? key}) : super(key: key);
@@ -10,6 +11,23 @@ class Question extends StatefulWidget {
 class _QuestionState extends State<Question> {
   @override
   Widget build(BuildContext context) {
-    return const Text('Question screen');
+    return SizedBox(
+      width: double.infinity,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text('The Question...',
+              style: TextStyle(
+                color: Colors.white,
+              )),
+          const SizedBox(
+            height: 40,
+          ),
+          AnswerButton(text: 'Answer', onTap: () {}),
+          AnswerButton(text: 'Answer', onTap: () {}),
+          AnswerButton(text: 'Answer', onTap: () {}),
+        ],
+      ),
+    );
   }
 }

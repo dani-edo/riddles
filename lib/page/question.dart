@@ -10,16 +10,24 @@ class Question extends StatefulWidget {
 }
 
 class _QuestionState extends State<Question> {
+  var currentQuestionIndex = 0;
+
+  void answerQuestion() {
+    setState(() {
+      if (currentQuestionIndex < questions.length - 1)
+        currentQuestionIndex += 1;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    final currentQuestion = questions[0];
+    final currentQuestion = questions[currentQuestionIndex];
     return SizedBox(
       width: double.infinity,
       child: Container(
         margin: EdgeInsets.all(40),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
               currentQuestion.text,
@@ -31,9 +39,15 @@ class _QuestionState extends State<Question> {
             const SizedBox(
               height: 40,
             ),
-            ...currentQuestion
-                .getSuffelledAndswers()
-                .map((item) => AnswerButton(text: item, onTap: () {})),
+            ...currentQuestion.getSuffelledAndswers().map((item) => Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    AnswerButton(text: item, onTap: answerQuestion),
+                  ],
+                )),
           ],
         ),
       ),

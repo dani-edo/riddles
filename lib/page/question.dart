@@ -31,7 +31,8 @@ class _QuestionState extends State<Question> {
             const SizedBox(
               height: 40,
             ),
-            ...currentQuestion.answers
+            ...currentQuestion
+                .getSuffelledAndswers()
                 .map((item) => AnswerButton(text: item, onTap: () {})),
           ],
         ),

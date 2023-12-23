@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:riddles/components/answer_button.dart';
 import 'package:riddles/data/questions.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Question extends StatefulWidget {
   const Question({Key? key}) : super(key: key);
@@ -31,8 +32,10 @@ class _QuestionState extends State<Question> {
           children: [
             Text(
               currentQuestion.text,
-              style: const TextStyle(
-                color: Colors.white,
+              style: GoogleFonts.lato(
+                color: const Color.fromARGB(255, 255, 199, 255),
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
               ),
               textAlign: TextAlign.center,
             ),

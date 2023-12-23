@@ -4,7 +4,10 @@ import 'package:riddles/data/questions.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class QuestionScreen extends StatefulWidget {
-  const QuestionScreen({Key? key}) : super(key: key);
+  const QuestionScreen({Key? key, required this.onSelectAnswer})
+      : super(key: key);
+
+  final void Function(String answer) onSelectAnswer;
 
   @override
   State<QuestionScreen> createState() => _QuestionScreenState();
@@ -13,10 +16,10 @@ class QuestionScreen extends StatefulWidget {
 class _QuestionScreenState extends State<QuestionScreen> {
   var currentQuestionIndex = 0;
 
-  void answerQuestion() {
+  void answerQuestion(String selectedAnswer) {
+    widget.onSelectAnswer(selectedAnswer);
     setState(() {
-      if (currentQuestionIndex < questions.length - 1)
-        currentQuestionIndex += 1;
+      currentQuestionIndex += 1;
     });
   }
 
@@ -48,7 +51,11 @@ class _QuestionScreenState extends State<QuestionScreen> {
                     const SizedBox(
                       height: 10,
                     ),
-                    AnswerButton(text: item, onTap: answerQuestion),
+                    AnswerButton(
+                        text: item,
+                        onTap: () {
+                          answerQuestion(item);
+                        }),
                   ],
                 )),
           ],

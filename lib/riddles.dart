@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:riddles/data/questions.dart';
 import 'package:riddles/page/question_screen.dart';
 import 'package:riddles/page/start_screen.dart';
 
@@ -10,12 +11,23 @@ class Riddles extends StatefulWidget {
 }
 
 class _QuizState extends State<Riddles> {
+  final List<String> selectedAnswers = [];
   var activeScreen = 'start-screen';
 
   void switchScreen() {
     setState(() {
       activeScreen = 'question-screen';
     });
+  }
+
+  void chooseAnswer(String answer) {
+    selectedAnswers.add(answer);
+
+    if (selectedAnswers.length == questions.length) {
+      setState(() {
+        activeScreen = 'start-screen';
+      });
+    }
   }
 
   @override
@@ -26,7 +38,9 @@ class _QuizState extends State<Riddles> {
       subTitle: 'Enjoy playing riddle',
     );
     if (activeScreen == 'question-screen') {
-      screenWidget = const QuestionScreen();
+      screenWidget = QuestionScreen(
+        onSelectAnswer: chooseAnswer,
+      );
     }
     return MaterialApp(
         title: 'Riddle',

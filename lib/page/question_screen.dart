@@ -45,7 +45,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
             const SizedBox(
               height: 40,
             ),
-            ...currentQuestion.getSuffelledAndswers().map((item) => Column(
+            ...currentQuestion.suffelledAndswers.map((item) => Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     const SizedBox(

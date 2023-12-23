@@ -12,7 +12,7 @@ class Riddles extends StatefulWidget {
 }
 
 class _QuizState extends State<Riddles> {
-  final List<String> selectedAnswers = [];
+  List<String> selectedAnswers = [];
   var activeScreen = 'start-screen';
 
   void goToQuestionScreen() {
@@ -22,6 +22,7 @@ class _QuizState extends State<Riddles> {
   }
 
   void goToStartScreen() {
+    selectedAnswers = [];
     setState(() {
       activeScreen = 'start-screen';
     });

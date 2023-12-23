@@ -3,14 +3,14 @@ import 'package:riddles/components/answer_button.dart';
 import 'package:riddles/data/questions.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Question extends StatefulWidget {
-  const Question({Key? key}) : super(key: key);
+class QuestionScreen extends StatefulWidget {
+  const QuestionScreen({Key? key}) : super(key: key);
 
   @override
-  State<Question> createState() => _QuestionState();
+  State<QuestionScreen> createState() => _QuestionScreenState();
 }
 
-class _QuestionState extends State<Question> {
+class _QuestionScreenState extends State<QuestionScreen> {
   var currentQuestionIndex = 0;
 
   void answerQuestion() {

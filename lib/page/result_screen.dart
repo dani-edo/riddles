@@ -59,7 +59,7 @@ class ResultScreen extends StatelessWidget {
             TextButton.icon(
               onPressed: onReset,
               icon: const Icon(
-                Icons.arrow_circle_left_outlined,
+                Icons.refresh,
                 color: Colors.white,
                 size: 25,
               ),

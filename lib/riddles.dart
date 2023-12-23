@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:riddles/data/questions.dart';
 import 'package:riddles/page/question_screen.dart';
+import 'package:riddles/page/result_screen.dart';
 import 'package:riddles/page/start_screen.dart';
 
 class Riddles extends StatefulWidget {
@@ -14,7 +15,7 @@ class _QuizState extends State<Riddles> {
   final List<String> selectedAnswers = [];
   var activeScreen = 'start-screen';
 
-  void switchScreen() {
+  void goToQuestionScreen() {
     setState(() {
       activeScreen = 'question-screen';
     });
@@ -25,7 +26,7 @@ class _QuizState extends State<Riddles> {
 
     if (selectedAnswers.length == questions.length) {
       setState(() {
-        activeScreen = 'start-screen';
+        activeScreen = 'result-screen';
       });
     }
   }
@@ -33,7 +34,7 @@ class _QuizState extends State<Riddles> {
   @override
   Widget build(BuildContext context) {
     Widget screenWidget = StartScreen(
-      startQuiz: switchScreen,
+      startQuiz: goToQuestionScreen,
       title: 'Riddle',
       subTitle: 'Enjoy playing riddle',
     );
@@ -41,6 +42,9 @@ class _QuizState extends State<Riddles> {
       screenWidget = QuestionScreen(
         onSelectAnswer: chooseAnswer,
       );
+    }
+    if (activeScreen == 'result-screen') {
+      screenWidget = const ResultScreen();
     }
     return MaterialApp(
         title: 'Riddle',

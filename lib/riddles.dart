@@ -21,6 +21,12 @@ class _QuizState extends State<Riddles> {
     });
   }
 
+  void goToStartScreen() {
+    setState(() {
+      activeScreen = 'start-screen';
+    });
+  }
+
   void chooseAnswer(String answer) {
     selectedAnswers.add(answer);
 
@@ -44,7 +50,8 @@ class _QuizState extends State<Riddles> {
       );
     }
     if (activeScreen == 'result-screen') {
-      screenWidget = const ResultScreen();
+      screenWidget = ResultScreen(
+          onReset: goToStartScreen, chosenAnswers: selectedAnswers);
     }
     return MaterialApp(
         title: 'Riddle',

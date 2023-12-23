@@ -1,8 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:riddles/components/questions_summary.dart';
+import 'package:riddles/data/questions.dart';
 
 class ResultScreen extends StatelessWidget {
-  const ResultScreen({super.key});
+  const ResultScreen(
+      {super.key, required this.onReset, required this.chosenAnswers});
+
+  final List<String> chosenAnswers;
+  final void Function() onReset;
+
+  List<Map<String, Object>> getSummaryData() {
+    final List<Map<String, Object>> summary = [];
+
+    for (var i = 0; i < chosenAnswers.length; i++) {
+      summary.add({
+        'question_index': i,
+        'question': questions[i].text,
+        'correct_answer': questions[i].answers[0],
+        'user_answer': chosenAnswers[i],
+      });
+    }
+
+    return summary;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,8 +46,12 @@ class ResultScreen extends StatelessWidget {
             const SizedBox(
               height: 30,
             ),
+            QuestionsSummary(summaryData: getSummaryData()),
+            const SizedBox(
+              height: 30,
+            ),
             TextButton(
-              onPressed: () {},
+              onPressed: onReset,
               child: const Text('Restart Quiz!'),
             )
           ],
